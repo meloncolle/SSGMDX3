@@ -1,8 +1,8 @@
-name: Godot Release Build
+name: Godot Debug Build
 on:
-  pull_request:
+  push:
     branches:    
-      - 'main'
+      - 'develop'
 
 env:
   GODOT_VERSION: 4.3
@@ -11,7 +11,7 @@ env:
 
 jobs:
   export-windows:
-    name: Windows Release Export
+    name: Windows Debug Export
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.3
@@ -37,10 +37,10 @@ jobs:
           mkdir -v -p build/windows
           cd $PROJECT_PATH
           godot --headless --verbose --editor --quit
-          godot --headless --verbose --export-release "win_x86_64" ./build/windows/$EXPORT_NAME.exe
+          godot --headless --verbose --export-debug "win_x86_64" ./build/windows/$EXPORT_NAME.exe
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SSGMDX3 (Release)
+          name: SSGMDX3 (Debug)
           path: build/windows
