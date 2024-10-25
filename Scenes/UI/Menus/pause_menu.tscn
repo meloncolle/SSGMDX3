@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmlhgvnxyd87"]
+[gd_scene load_steps=3 format=3 uid="uid://bmlhgvnxyd87"]
 
-[ext_resource type="Theme" uid="uid://biksopsiahq0c" path="res://UI/menu_theme.tres" id="1_b0yqk"]
+[ext_resource type="Theme" uid="uid://biksopsiahq0c" path="res://Scenes/UI/Menus/menu_theme.tres" id="1_b0yqk"]
+[ext_resource type="Script" path="res://Scenes/UI/Menus/pause_menu.gd" id="1_y4rk4"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_y4rk4")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -21,7 +23,7 @@ anchor_bottom = 0.5
 offset_left = -158.5
 offset_top = -76.0
 offset_right = 158.5
-offset_bottom = 76.0
+offset_bottom = 149.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_b0yqk")
@@ -32,8 +34,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -44.0
-offset_bottom = 44.0
+offset_top = -86.0
+offset_bottom = 86.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -45,6 +47,16 @@ horizontal_alignment = 1
 [node name="ResumeButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "Resume
+"
+
+[node name="RestartButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Restart
+"
+
+[node name="SubmitButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Submit Score
 "
 
 [node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]

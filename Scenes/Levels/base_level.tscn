@@ -1,0 +1,149 @@
+[gd_scene load_steps=11 format=3 uid="uid://jwa57sqwi2ws"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/base_level.gd" id="1_uc3i8"]
+[ext_resource type="Script" path="res://Scripts/cam.gd" id="2_1qgfg"]
+[ext_resource type="Script" path="res://Scripts/power.gd" id="2_bhbfv"]
+[ext_resource type="PackedScene" uid="uid://c6a1hop38o3mq" path="res://Scenes/UI/Menus/death_screen.tscn" id="2_l5cqc"]
+[ext_resource type="Shader" path="res://Assets/Shaders/blur.gdshader" id="3_2ydd2"]
+[ext_resource type="Script" path="res://Scripts/fuel.gd" id="3_ma3hl"]
+[ext_resource type="PackedScene" uid="uid://bx3uslokvfceg" path="res://Scenes/UI/HUD/PowerMeter.tscn" id="5_j3a3o"]
+[ext_resource type="PackedScene" uid="uid://b0q8p531yqss6" path="res://Scenes/Player/Ball.tscn" id="5_vcv83"]
+[ext_resource type="FontFile" uid="uid://blgpfplhkpohw" path="res://Assets/UI/CAT North.ttf" id="7_oh2q1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k15bs"]
+resource_local_to_scene = true
+shader = ExtResource("3_2ydd2")
+shader_parameter/blur = 0.0
+shader_parameter/brightness = 1.0
+
+[node name="BaseLevel" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_uc3i8")
+
+[node name="Power" type="Node" parent="."]
+script = ExtResource("2_bhbfv")
+force = 20.0
+meterSpeed = 5.0
+
+[node name="Fuel" type="Node" parent="."]
+script = ExtResource("3_ma3hl")
+startingFuel = 100.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("2_1qgfg")
+
+[node name="Stars" type="Node" parent="."]
+
+[node name="BlackHoles" type="Node" parent="."]
+
+[node name="WormHoles" type="Node" parent="."]
+
+[node name="Collectibles" type="Node" parent="."]
+
+[node name="Boundaries" type="Node" parent="."]
+
+[node name="Planets" type="Node" parent="."]
+
+[node name="Ball" parent="Planets" instance=ExtResource("5_vcv83")]
+position = Vector2(576, 324)
+isFirstBall = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="RichTextLabel" parent="UI"]
+clip_contents = false
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 16.0
+offset_bottom = 45.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("7_oh2q1")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+
+[node name="FuelLabel" type="RichTextLabel" parent="UI"]
+clip_contents = false
+offset_left = 16.0
+offset_top = 41.0
+offset_right = 16.0
+offset_bottom = 76.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("7_oh2q1")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+
+[node name="InfinityFuel" type="RichTextLabel" parent="UI"]
+visible = false
+clip_contents = false
+offset_left = 16.0
+offset_top = 41.0
+offset_right = 16.0
+offset_bottom = 76.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("7_oh2q1")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "Fuel:"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Infinity" type="RichTextLabel" parent="UI/InfinityFuel"]
+clip_contents = false
+layout_mode = 0
+offset_left = 138.0
+offset_top = 1.0
+offset_right = 172.0
+offset_bottom = 71.0
+rotation = 1.5708
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "8"
+fit_content = true
+autowrap_mode = 0
+
+[node name="StrokesLabel" type="RichTextLabel" parent="UI"]
+clip_contents = false
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 16.0
+offset_bottom = 107.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("7_oh2q1")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+
+[node name="PowerMeter" parent="UI" instance=ExtResource("5_j3a3o")]
+visible = false
+position = Vector2(1031, 505)
+scale = Vector2(0.478595, 0.478595)
+
+[node name="DeathScreen" parent="UI" instance=ExtResource("2_l5cqc")]
+visible = false
+material = SubResource("ShaderMaterial_k15bs")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -576.0
+offset_bottom = -324.0

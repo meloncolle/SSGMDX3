@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://ds1suqh8e5vjd"]
+
+[ext_resource type="Texture2D" uid="uid://dls221oc3pd7c" path="res://Assets/UI/Menus/base_button.png" id="1_n13ah"]
+[ext_resource type="FontFile" uid="uid://blgpfplhkpohw" path="res://Assets/UI/CAT North.ttf" id="2_kkqmq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wdbqo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4445"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gwqmg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exee2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ko45s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0rk8p"]
+
+[node name="Button" type="Button"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/icon_pressed_color = Color(0.945098, 0.34902, 0.439216, 1)
+theme_override_colors/icon_hover_color = Color(0.972549, 0.690196, 0.733333, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wdbqo")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_i4445")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_gwqmg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_exee2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ko45s")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0rk8p")
+icon = ExtResource("1_n13ah")
+alignment = 0
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 12.0
+offset_right = 281.0
+offset_bottom = 42.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kkqmq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+fit_content = true

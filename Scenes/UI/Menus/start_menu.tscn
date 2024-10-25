@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cccvsiorwsaq2"]
 
-[ext_resource type="Theme" uid="uid://biksopsiahq0c" path="res://UI/menu_theme.tres" id="1_peq1g"]
+[ext_resource type="Theme" uid="uid://biksopsiahq0c" path="res://Scenes/UI/menu_theme.tres" id="1_peq1g"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
