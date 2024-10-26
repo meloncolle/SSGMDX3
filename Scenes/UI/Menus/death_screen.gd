@@ -1,7 +1,11 @@
 extends Control
 
+# todo: what?? dont put this here man
 var stroke_penalty = 25
 var fuel_bonus = 0.1
+
+@onready var retryButton: Button = $RetryButton
+@onready var quitButton: Button = $QuitButton
 
 var died: bool
 var points: int

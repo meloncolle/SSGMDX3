@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cccvsiorwsaq2"]
+[gd_scene load_steps=3 format=3 uid="uid://cccvsiorwsaq2"]
 
-[ext_resource type="Theme" uid="uid://biksopsiahq0c" path="res://Scenes/UI/menu_theme.tres" id="1_peq1g"]
+[ext_resource type="Theme" uid="uid://biksopsiahq0c" path="res://Scenes/UI/Menus/menu_theme.tres" id="1_peq1g"]
+[ext_resource type="Script" path="res://Scenes/UI/Menus/start_menu.gd" id="1_pycpb"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pycpb")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

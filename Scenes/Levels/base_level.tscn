@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b0q8p531yqss6" path="res://Scenes/Player/Ball.tscn" id="5_vcv83"]
 [ext_resource type="FontFile" uid="uid://blgpfplhkpohw" path="res://Assets/UI/CAT North.ttf" id="7_oh2q1"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k15bs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oypyg"]
 resource_local_to_scene = true
 shader = ExtResource("3_2ydd2")
 shader_parameter/blur = 0.0
@@ -33,21 +33,8 @@ startingFuel = 100.0
 position = Vector2(576, 324)
 script = ExtResource("2_1qgfg")
 
-[node name="Stars" type="Node" parent="."]
-
-[node name="BlackHoles" type="Node" parent="."]
-
-[node name="WormHoles" type="Node" parent="."]
-
-[node name="Collectibles" type="Node" parent="."]
-
-[node name="Boundaries" type="Node" parent="."]
-
-[node name="Planets" type="Node" parent="."]
-
-[node name="Ball" parent="Planets" instance=ExtResource("5_vcv83")]
+[node name="Ball" parent="." instance=ExtResource("5_vcv83")]
 position = Vector2(576, 324)
-isFirstBall = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -65,6 +52,8 @@ theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 fit_content = true
 autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="FuelLabel" type="RichTextLabel" parent="UI"]
 clip_contents = false
@@ -80,6 +69,8 @@ theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 fit_content = true
 autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="InfinityFuel" type="RichTextLabel" parent="UI"]
 visible = false
@@ -97,6 +88,7 @@ bbcode_enabled = true
 text = "Fuel:"
 fit_content = true
 autowrap_mode = 0
+metadata/_edit_lock_ = true
 
 [node name="Infinity" type="RichTextLabel" parent="UI/InfinityFuel"]
 clip_contents = false
@@ -114,6 +106,7 @@ bbcode_enabled = true
 text = "8"
 fit_content = true
 autowrap_mode = 0
+metadata/_edit_lock_ = true
 
 [node name="StrokesLabel" type="RichTextLabel" parent="UI"]
 clip_contents = false
@@ -129,15 +122,18 @@ theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 fit_content = true
 autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="PowerMeter" parent="UI" instance=ExtResource("5_j3a3o")]
 visible = false
 position = Vector2(1031, 505)
 scale = Vector2(0.478595, 0.478595)
+metadata/_edit_lock_ = true
 
 [node name="DeathScreen" parent="UI" instance=ExtResource("2_l5cqc")]
 visible = false
-material = SubResource("ShaderMaterial_k15bs")
+material = SubResource("ShaderMaterial_oypyg")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -147,3 +143,4 @@ offset_left = -576.0
 offset_top = -324.0
 offset_right = -576.0
 offset_bottom = -324.0
+metadata/_edit_lock_ = true

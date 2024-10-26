@@ -6,8 +6,6 @@ extends Node
 # Set this lower if we are low on fuel!
 var limit: float = 1.0
 
-signal changed_power(newPower: float)
-
 var power: float:
 	set = set_power
 
@@ -15,6 +13,7 @@ var isOscillating: bool = false
 var meterTimer: float
 
 func _ready():
+	SignalBus.connect("changed_fuel", check_limit)
 	reset()
 
 func _physics_process(delta):
@@ -28,7 +27,7 @@ func reset():
 
 func set_power(value: float) -> void:
 	power = value
-	changed_power.emit(power)
+	SignalBus.changed_power.emit(power)
 	
 func check_limit(fuel: float, _oldFuel: float = 0):
 	if fuel < Globals.MAX_FUEL_PER_SWING:

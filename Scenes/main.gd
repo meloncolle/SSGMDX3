@@ -14,8 +14,8 @@ func _ready():
 	
 	Globals.sceneController = self
 	set_state(Enums.GameState.ON_START)
-	startMenu.get_node("Panel/VBoxContainer/StartButton").pressed.connect(self._on_press_start)
-	startMenu.get_node("Panel/VBoxContainer/ExitButton").pressed.connect(self._on_press_exit)
+	startMenu.startButton.pressed.connect(self._on_press_start)
+	startMenu.exitButton.pressed.connect(self._on_press_exit)
 	pauseMenu.resumeButton.pressed.connect(self._on_press_resume)
 	pauseMenu.restartButton.pressed.connect(self._on_press_restart)
 	pauseMenu.quitButton.pressed.connect(self._on_press_quit)
@@ -64,6 +64,7 @@ func _on_press_restart():
 	set_state(Enums.GameState.IN_GAME)
 	if (is_instance_valid(sceneInstance)):
 		sceneInstance.queue_free()
+		await get_tree().process_frame
 	sceneInstance = load(starting_level.resource_path).instantiate()
 	self.add_child(sceneInstance)
 	set_state(Enums.GameState.IN_GAME)

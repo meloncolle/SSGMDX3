@@ -5,6 +5,9 @@ var power: float = 0
 var max_angle: float = PI * 2.12
 var min_angle: float = PI / 2.6
 
+func _ready():
+	SignalBus.connect("changed_power", _on_changed_power)
+
 func _on_changed_power(newPower: float):
 	power = newPower
 	queue_redraw()

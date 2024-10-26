@@ -5,7 +5,7 @@ class_name BaseLevel
 var state: Enums.LevelState:
 	set = set_state
 
-var balls: Array[BallEntity] = []
+var balls: Array[Node]
 
 var activeBallIndex: int = -1
 
@@ -29,6 +29,15 @@ var strokes: int = 0: set = set_strokes
 func _ready():
 	state = Enums.LevelState.INIT
 	
+	# Init UI label stuff
+	if infinite_fuel:
+		fuelLabel.visible = false
+		$UI/InfinityFuel.visible = true
+	scoreLabel.text = "Points: %d" % score
+	fuelLabel.text = "Fuel: %0.2f%%" % fuel.fuel
+	strokeLabel.text = "Strokes: %d" % strokes
+	power.check_limit(fuel.fuel)
+
 	# todo: this is entity checks and stuff that will need to be redone
 	## Check for at least one black hole
 	#var foundBH: bool = false
@@ -43,25 +52,12 @@ func _ready():
 		#if wh is WHEntity:
 			##assert(wh.warpTarget != null, "Wormhole \"" + wh.name + "\" needs to have warp target assigned")
 			#wh.connect("warped", func(): sfx.warpEnter.play())
-	
-	# Setup score signal for each collectible
-	for c in $Collectibles.get_children():
-		if c is Collectible:
-			c.connect("granted_points", self.set_score)
-		elif c is Fuel:
-			c.connect("collect_fuel", func(val: float): fuel.fuel += val)
-	
+
 	# Populate ball list
-	for b in $Planets.get_children():
-		if b is BallEntity:
-			balls.append(b)
-	
-	# Set up listener for when a ball is destroyed
-	for b in balls:
-		b.connect("ball_destroyed", self._on_ball_destroyed)
-		
+	balls = get_tree().get_nodes_in_group("balls")
+	assert(balls.size() > 0, "Level needs at least 1 ball!")
 	update_ball_indices()
-	
+		
 	# Set active ball
 	for i in range(balls.size()):
 		if activeBallIndex == -1:
@@ -71,27 +67,18 @@ func _ready():
 		elif balls[i].isFirstBall:
 			activeBallIndex = i
 			break
-	
-	assert(activeBallIndex != -1, "Ball not found in level")
 	set_active_ball(activeBallIndex)
 	
+	# Hook up signals
+	SignalBus.connect("earned_points", self.set_score)
+	SignalBus.connect("pickup_fuel", func(val: float): fuel.fuel += val)
+	SignalBus.connect("changed_fuel", _on_changed_fuel)
+	SignalBus.connect("ball_destroyed", _on_ball_destroyed)
+	SignalBus.level_ended.connect(end_level)
+	
 	# Hook up death screen buttons
-	deathScreen.get_node("RetryButton").pressed.connect(_on_press_retry)
-	deathScreen.get_node("QuitButton").pressed.connect(_on_press_quit)
-	
-	if Globals.sceneController != null:			
-		# Hook up submit score button on pause menu
-		# todo: make thsi better...
-		Globals.sceneController.pauseMenu.submitButton.pressed.connect(end_level)
-	
-	power.connect("changed_power", $UI/PowerMeter/Mask/Bar._on_changed_power)
-	fuel.connect("changed_fuel", _on_changed_fuel)
-	fuel.connect("changed_fuel", power.check_limit)
-	#_on_changed_fuel(fuel.fuel, fuel.fuel) # to trigger UI to appear
-	
-	if infinite_fuel:
-		fuelLabel.visible = false
-		$UI/InfinityFuel.visible = true
+	deathScreen.retryButton.pressed.connect(_on_press_retry)
+	deathScreen.quitButton.pressed.connect(_on_press_quit)
 	
 	state = Enums.LevelState.READY
 
@@ -156,10 +143,7 @@ func set_state(newState: Enums.LevelState):
 	
 	match newState:
 		Enums.LevelState.INIT:
-			scoreLabel.text = "Points: %d" % score
-			fuelLabel.text = "Fuel: %0.2f%%" % fuel.fuel
-			strokeLabel.text = "Strokes: %d" % strokes
-			power.check_limit(fuel.fuel)
+			pass
 			
 		Enums.LevelState.READY:
 			Globals.disableInput = false

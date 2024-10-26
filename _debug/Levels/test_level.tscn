@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://kixx03afc854"]
+[gd_scene load_steps=7 format=3 uid="uid://kixx03afc854"]
 
 [ext_resource type="PackedScene" uid="uid://jwa57sqwi2ws" path="res://Scenes/Levels/base_level.tscn" id="1_ygtu8"]
 [ext_resource type="Shader" path="res://Assets/Shaders/blur.gdshader" id="2_iq53a"]
 [ext_resource type="PackedScene" uid="uid://ceht6yka27cw1" path="res://Scenes/Collectible/Collectible.tscn" id="2_v0433"]
+[ext_resource type="PackedScene" uid="uid://4f1m2s6ovnyx" path="res://Scenes/Collectible/FuelTank.tscn" id="4_46w3p"]
+[ext_resource type="PackedScene" uid="uid://b0q8p531yqss6" path="res://Scenes/Player/Ball.tscn" id="5_7rjs6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a1v4m"]
 resource_local_to_scene = true
@@ -12,14 +14,20 @@ shader_parameter/brightness = 1.0
 
 [node name="BaseLevel" instance=ExtResource("1_ygtu8")]
 
-[node name="Collectible" parent="Collectibles" index="0" instance=ExtResource("2_v0433")]
+[node name="Ball2" parent="." index="0" instance=ExtResource("5_7rjs6")]
+position = Vector2(654, 407)
+
+[node name="Collectibles#Collectible" parent="." index="1" instance=ExtResource("2_v0433")]
 position = Vector2(790, 399)
 
-[node name="Collectible2" parent="Collectibles" index="1" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible2" parent="." index="2" instance=ExtResource("2_v0433")]
 position = Vector2(851, 429)
 
-[node name="Collectible3" parent="Collectibles" index="2" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible3" parent="." index="3" instance=ExtResource("2_v0433")]
 position = Vector2(917, 456)
+
+[node name="FuelTank" parent="." index="4" instance=ExtResource("4_46w3p")]
+position = Vector2(824, 295)
 
 [node name="DeathScreen" parent="UI" index="5"]
 material = SubResource("ShaderMaterial_a1v4m")
