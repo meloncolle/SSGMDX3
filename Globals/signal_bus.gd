@@ -10,4 +10,7 @@ signal pickup_fuel(fuel: float)
 
 signal earned_points(points: int)
 
-signal level_ended()
+signal lvl_ended()
+signal lvl_exited()
+signal lvl_restarted()
+signal lvl_resumed()

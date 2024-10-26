@@ -74,11 +74,11 @@ func _ready():
 	SignalBus.connect("pickup_fuel", func(val: float): fuel.fuel += val)
 	SignalBus.connect("changed_fuel", _on_changed_fuel)
 	SignalBus.connect("ball_destroyed", _on_ball_destroyed)
-	SignalBus.level_ended.connect(end_level)
+	SignalBus.lvl_ended.connect(end_level)
 	
 	# Hook up death screen buttons
-	deathScreen.retryButton.pressed.connect(_on_press_retry)
-	deathScreen.quitButton.pressed.connect(_on_press_quit)
+	deathScreen.retryButton.pressed.connect(func(): SignalBus.lvl_restarted.emit())
+	deathScreen.quitButton.pressed.connect(func(): SignalBus.lvl_exited.emit())
 	
 	state = Enums.LevelState.READY
 
@@ -196,22 +196,4 @@ func _on_ball_destroyed(destroyedIndex: int, _pos: Vector2, points: int = 0):
 func end_level(died: bool = false):
 	state = Enums.LevelState.DEAD
 	deathScreen.show_results(died, score, fuel.fuel, strokes)
-	# todo: fix this
-	# also disable pausing
-	Globals.sceneController._on_press_resume()
-
-func _on_press_retry():
-	if Globals.sceneController != null:
-		# If running full game context
-		Globals.sceneController._on_press_restart()
-	else:
-		# If running just the level scene
-		get_tree().reload_current_scene()
-	
-func _on_press_quit():
-	if Globals.sceneController != null:
-		# If running full game context
-		Globals.sceneController._on_press_quit()
-	else:
-		# If running just the level scene
-		get_tree().quit()
+	#SignalBus.lvl_resumed.emit()

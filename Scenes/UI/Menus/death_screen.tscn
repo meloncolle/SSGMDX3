@@ -608,6 +608,7 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [node name="DeathScreen" type="ColorRect"]
+process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -620,6 +621,7 @@ script = ExtResource("1_srhpk")
 libraries = {
 "": SubResource("AnimationLibrary_xehpu")
 }
+speed_scale = 5.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_14igp")
@@ -647,9 +649,9 @@ offset_bottom = 390.0
 
 [node name="Clear" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 54.9999
+offset_left = -1072.0
 offset_top = 29.0
-offset_right = 1117.0
+offset_right = -10.0
 offset_bottom = 103.0
 theme_override_fonts/normal_font = ExtResource("6_qdnv5")
 theme_override_font_sizes/normal_font_size = 50
@@ -711,7 +713,7 @@ layout_mode = 0
 offset_left = 54.0
 offset_top = 110.0
 offset_right = 535.0
-offset_bottom = 523.0
+offset_bottom = 120.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_2gbwb")
 
 [node name="Title" type="Label" parent="Results"]

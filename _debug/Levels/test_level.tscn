@@ -29,5 +29,8 @@ position = Vector2(917, 456)
 [node name="FuelTank" parent="." index="4" instance=ExtResource("4_46w3p")]
 position = Vector2(824, 295)
 
+[node name="Ball" parent="." index="8"]
+isFirstBall = true
+
 [node name="DeathScreen" parent="UI" index="5"]
 material = SubResource("ShaderMaterial_a1v4m")

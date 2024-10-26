@@ -25,7 +25,5 @@ const SAVE_PATH: String = "user://data.cfg"
 const MAX_SCORES_PER_LEVEL: int = 5
 
 # ---------dont touch this -------------#
-
-var sceneController: Node = null
 var disableInput: bool = false
 var isPausable: bool = true

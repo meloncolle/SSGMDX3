@@ -7,4 +7,4 @@ extends Control
 
 
 func _ready():
-	submitButton.connect("pressed", func(): SignalBus.level_ended.emit())
+	submitButton.connect("pressed", func(): SignalBus.lvl_ended.emit())
