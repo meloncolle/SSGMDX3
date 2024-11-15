@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://kixx03afc854"]
+[gd_scene load_steps=8 format=3 uid="uid://kixx03afc854"]
 
 [ext_resource type="PackedScene" uid="uid://jwa57sqwi2ws" path="res://Scenes/Levels/base_level.tscn" id="1_ygtu8"]
 [ext_resource type="Shader" path="res://Assets/Shaders/blur.gdshader" id="2_iq53a"]
 [ext_resource type="PackedScene" uid="uid://ceht6yka27cw1" path="res://Scenes/Collectible/Collectible.tscn" id="2_v0433"]
 [ext_resource type="PackedScene" uid="uid://4f1m2s6ovnyx" path="res://Scenes/Collectible/FuelTank.tscn" id="4_46w3p"]
 [ext_resource type="PackedScene" uid="uid://b0q8p531yqss6" path="res://Scenes/Player/Ball.tscn" id="5_7rjs6"]
+[ext_resource type="PackedScene" uid="uid://dhkau0du4lpmk" path="res://Scenes/Environment/GravityBubble.tscn" id="6_4np41"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a1v4m"]
 resource_local_to_scene = true
@@ -34,3 +35,13 @@ isFirstBall = true
 
 [node name="DeathScreen" parent="UI" index="5"]
 material = SubResource("ShaderMaterial_a1v4m")
+
+[node name="GravityBubble" parent="." index="10" instance=ExtResource("6_4np41")]
+position = Vector2(427, 218)
+bubbleRadius = 116.0
+
+[node name="GravityBubble2" parent="." index="11" instance=ExtResource("6_4np41")]
+position = Vector2(230, 371)
+gravity = -1033.0
+bubbleRadius = 15.0
+gravityStrength = -1033.0
