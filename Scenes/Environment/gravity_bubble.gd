@@ -29,35 +29,35 @@ func _ready():
 	
 	baseGravity = gravityStrength
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if not Engine.is_editor_hint():
 		if isBoosting:
 			if gravityStrength < Globals.GRAVITY_BOOST_LIMIT:
-				gravityStrength += Globals.GRAVITY_BOOST_SPEED
+				gravityStrength += Globals.GRAVITY_BOOST_SPEED * delta * 100
 		else:
 			if gravityStrength > baseGravity:
-				gravityStrength -= Globals.GRAVITY_BOOST_SPEED
+				gravityStrength -= Globals.GRAVITY_BOOST_SPEED * delta * 100
 
 func _input(event):
 	if not Engine.is_editor_hint():
-		if Globals.disableInput || !boostEnabled:
+		if Globals.disableInput || Globals.disableBoost || !boostEnabled:
 			return
 		
 		if (event is InputEventMouseButton 
-			and event.button_index == MOUSE_BUTTON_RIGHT 
+			and event.button_index == MOUSE_BUTTON_LEFT 
 			and event.pressed
 			and is_point_inside(get_global_mouse_position())
 		):
 			isBoosting = true
 		
 		elif (event is InputEventMouseButton 
-			and event.button_index == MOUSE_BUTTON_RIGHT 
+			and event.button_index == MOUSE_BUTTON_LEFT 
 			and !event.pressed
 		):
 			isBoosting = false
 			
 		if (event is InputEventMouseMotion
-			and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)):
+			and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 			isBoosting = is_point_inside(get_global_mouse_position())
 
 func is_point_inside(point: Vector2) -> bool:

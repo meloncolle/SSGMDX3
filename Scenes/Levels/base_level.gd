@@ -26,6 +26,8 @@ var strokes: int = 0: set = set_strokes
 
 @export var infinite_fuel: bool = false
 
+@onready var debugLabel: RichTextLabel = $UI/DebugLabel
+
 func _ready():
 	state = Enums.LevelState.INIT
 	
@@ -37,21 +39,6 @@ func _ready():
 	fuelLabel.text = "Fuel: %0.2f%%" % fuel.fuel
 	strokeLabel.text = "Strokes: %d" % strokes
 	power.check_limit(fuel.fuel)
-
-	# todo: this is entity checks and stuff that will need to be redone
-	## Check for at least one black hole
-	#var foundBH: bool = false
-	#for bh in $BlackHoles.get_children():
-		#if bh is BHEntity:
-			#foundBH = true
-			#break
-	#assert(foundBH, "Expected at least one black hole in level")
-	#
-	## Check all wormholes have warp target assigned
-	#for wh in $WormHoles.get_children():
-		#if wh is WHEntity:
-			##assert(wh.warpTarget != null, "Wormhole \"" + wh.name + "\" needs to have warp target assigned")
-			#wh.connect("warped", func(): sfx.warpEnter.play())
 
 	# Populate ball list
 	balls = get_tree().get_nodes_in_group("balls")
@@ -74,20 +61,19 @@ func _ready():
 	SignalBus.connect("pickup_fuel", func(val: float): fuel.fuel += val)
 	SignalBus.connect("changed_fuel", _on_changed_fuel)
 	SignalBus.connect("ball_destroyed", _on_ball_destroyed)
+	SignalBus.connect("ball_stopped", _on_ball_stopped)
 	SignalBus.lvl_ended.connect(end_level)
 	
 	# Hook up death screen buttons
 	deathScreen.retryButton.pressed.connect(func(): SignalBus.lvl_restarted.emit())
 	deathScreen.quitButton.pressed.connect(func(): SignalBus.lvl_exited.emit())
-	
-	state = Enums.LevelState.READY
 
 func _input(event):
 	if Globals.disableInput:
 		return
 	
 	match state:
-		Enums.LevelState.READY:
+		Enums.LevelState.WAIT_SWING:
 			# SPACE DOWN to change active ball
 			if event.is_action_pressed("ACTION"):
 				if Globals.ENABLE_SWITCHING_BALLS:
@@ -98,16 +84,28 @@ func _input(event):
 				and event.button_index == MOUSE_BUTTON_LEFT 
 				and event.pressed
 			):
-				state = Enums.LevelState.IN_SWING
+				state = Enums.LevelState.SWINGING
 			
-		Enums.LevelState.IN_SWING:
+		Enums.LevelState.SWINGING:
 			# LMB UP: do swing
 			if (event is InputEventMouseButton 
 				and event.button_index == MOUSE_BUTTON_LEFT 
 				and not event.pressed
 				):
 				do_swing(power.power)
-				state = Enums.LevelState.READY
+				state = Enums.LevelState.WAIT_STOP
+				
+		Enums.LevelState.WAIT_STOP:
+			# SPACE DOWN to change active ball
+			if event.is_action_pressed("ACTION"):
+				if Globals.ENABLE_SWITCHING_BALLS:
+					set_active_ball(activeBallIndex + 1)
+			
+			# RMB to brake/ release to stop brake
+			if (event is InputEventMouseButton 
+				and event.button_index == MOUSE_BUTTON_RIGHT 
+			):
+				balls[activeBallIndex].isBraking = event.pressed
 				
 		Enums.LevelState.DEAD:
 			return
@@ -119,7 +117,8 @@ func do_swing(force: float):
 	var swing = get_global_mouse_position() - balls[activeBallIndex].position
 	# i think we have to multiply this by the camera zoom so the force is proportional?? weird
 	balls[activeBallIndex].apply_central_impulse(swing * power.force * power.power * cam.zoom.y)
-		
+	balls[activeBallIndex].isStopped = false
+	
 	if !infinite_fuel:
 		fuel.fuel -= power.power * Globals.MAX_FUEL_PER_SWING 
 		
@@ -137,6 +136,11 @@ func set_active_ball(newIndex: int):
 	
 	activeBallIndex = newIndex
 	balls[activeBallIndex].isTargeted = true
+	
+	if balls[activeBallIndex].isStopped:
+		state = Enums.LevelState.WAIT_SWING
+	else:
+		state = Enums.LevelState.WAIT_STOP
 
 func set_state(newState: Enums.LevelState):
 	var _oldState := state
@@ -145,16 +149,27 @@ func set_state(newState: Enums.LevelState):
 		Enums.LevelState.INIT:
 			pass
 			
-		Enums.LevelState.READY:
+		Enums.LevelState.WAIT_SWING:
 			Globals.disableInput = false
 			Globals.isPausable = true
-			power.isOscillating = false
-			powerMeter.visible = false
+			Globals.disableBoost = true
+			balls[activeBallIndex].set_pointer(true)
+			debugLabel.text = "[right]WAITING FOR SWING[/right]"
 			
-		Enums.LevelState.IN_SWING:
+		Enums.LevelState.SWINGING:
 			power.reset()
 			power.isOscillating = true
 			powerMeter.visible = true
+			debugLabel.text = "[right]SWINGING[/right]"
+
+		
+		Enums.LevelState.WAIT_STOP:
+			powerMeter.visible = false
+			power.isOscillating = false
+			Globals.disableBoost = false
+			balls[activeBallIndex].set_pointer(false)
+			debugLabel.text = "[right]WAITING FOR BALL STOP[/right]"
+
 		
 		Enums.LevelState.DEAD:
 			Globals.disableInput = true
@@ -192,6 +207,11 @@ func _on_ball_destroyed(destroyedIndex: int, _pos: Vector2, points: int = 0):
 		end_level(true)
 	else:
 		set_active_ball(activeBallIndex)
+		
+func _on_ball_stopped(index: int):
+	if index == activeBallIndex:
+		state = Enums.LevelState.WAIT_SWING
+
 
 func end_level(died: bool = false):
 	state = Enums.LevelState.DEAD

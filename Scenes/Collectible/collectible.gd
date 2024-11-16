@@ -8,7 +8,7 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is BallEntity:
+	if body.is_in_group("balls"):
 		SignalBus.pickup_points.emit()
 		if Globals.ENABLE_SIMPLE_COLLECTIBLES:
 			destroy(true)

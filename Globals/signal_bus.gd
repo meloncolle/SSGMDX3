@@ -4,6 +4,7 @@ signal changed_fuel(newFuel: float, oldFuel: float)
 signal changed_power(newPower: float)
 
 signal ball_destroyed(index: int, destroyer: Node2D)
+signal ball_stopped(index: int)
 
 signal pickup_points()
 signal pickup_fuel(fuel: float)

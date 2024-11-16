@@ -15,25 +15,26 @@ shader_parameter/brightness = 1.0
 
 [node name="BaseLevel" instance=ExtResource("1_ygtu8")]
 
-[node name="Ball2" parent="." index="0" instance=ExtResource("5_7rjs6")]
-position = Vector2(654, 407)
-
-[node name="Collectibles#Collectible" parent="." index="1" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible" parent="." index="0" instance=ExtResource("2_v0433")]
 position = Vector2(790, 399)
 
-[node name="Collectibles#Collectible2" parent="." index="2" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible2" parent="." index="1" instance=ExtResource("2_v0433")]
 position = Vector2(851, 429)
 
-[node name="Collectibles#Collectible3" parent="." index="3" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible3" parent="." index="2" instance=ExtResource("2_v0433")]
 position = Vector2(917, 456)
 
-[node name="FuelTank" parent="." index="4" instance=ExtResource("4_46w3p")]
+[node name="FuelTank" parent="." index="3" instance=ExtResource("4_46w3p")]
 position = Vector2(824, 295)
 
-[node name="Ball" parent="." index="8"]
+[node name="Ball" parent="." index="7"]
 isFirstBall = true
 
-[node name="DeathScreen" parent="UI" index="5"]
+[node name="Ball2" parent="." index="8" instance=ExtResource("5_7rjs6")]
+position = Vector2(419, 445)
+isFirstBall = true
+
+[node name="DeathScreen" parent="UI" index="6"]
 material = SubResource("ShaderMaterial_a1v4m")
 
 [node name="GravityBubble" parent="." index="10" instance=ExtResource("6_4np41")]

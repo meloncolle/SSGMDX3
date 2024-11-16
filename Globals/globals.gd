@@ -26,4 +26,5 @@ const MAX_SCORES_PER_LEVEL: int = 5
 
 # ---------dont touch this -------------#
 var disableInput: bool = false
+var disableBoost: bool = false
 var isPausable: bool = true
