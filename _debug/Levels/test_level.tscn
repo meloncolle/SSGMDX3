@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kixx03afc854"]
+[gd_scene load_steps=10 format=3 uid="uid://kixx03afc854"]
 
 [ext_resource type="PackedScene" uid="uid://jwa57sqwi2ws" path="res://Scenes/Levels/base_level.tscn" id="1_ygtu8"]
 [ext_resource type="Shader" path="res://Assets/Shaders/blur.gdshader" id="2_iq53a"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b0q8p531yqss6" path="res://Scenes/Player/Ball.tscn" id="5_7rjs6"]
 [ext_resource type="PackedScene" uid="uid://dhkau0du4lpmk" path="res://Scenes/Environment/GravityBubble.tscn" id="6_4np41"]
 [ext_resource type="PackedScene" uid="uid://bjfgkcmbtqup" path="res://Scenes/Environment/BlackHole.tscn" id="7_yw62b"]
+[ext_resource type="PackedScene" uid="uid://d1f85mp1v3bdg" path="res://Scenes/Environment/WormHole.tscn" id="8_uqaj3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a1v4m"]
 resource_local_to_scene = true
@@ -17,45 +18,55 @@ shader_parameter/brightness = 1.0
 [node name="BaseLevel" instance=ExtResource("1_ygtu8")]
 infinite_fuel = true
 
-[node name="Collectibles#Collectible" parent="." index="0" instance=ExtResource("2_v0433")]
-position = Vector2(790, 399)
-
-[node name="Collectibles#Collectible2" parent="." index="1" instance=ExtResource("2_v0433")]
-position = Vector2(851, 429)
-
-[node name="Collectibles#Collectible3" parent="." index="2" instance=ExtResource("2_v0433")]
-position = Vector2(917, 456)
-
-[node name="FuelTank" parent="." index="3" instance=ExtResource("4_46w3p")]
-position = Vector2(824, 295)
-
-[node name="Ball" parent="." index="7"]
-position = Vector2(421, 443)
-isFirstBall = true
-
-[node name="Ball3" parent="." index="8" instance=ExtResource("5_7rjs6")]
-position = Vector2(354, 6)
-isFirstBall = true
-
-[node name="Ball4" parent="." index="9" instance=ExtResource("5_7rjs6")]
-position = Vector2(251, 200)
-isFirstBall = true
-
-[node name="DeathScreen" parent="UI" index="6"]
-material = SubResource("ShaderMaterial_a1v4m")
-
-[node name="GravityBubble" parent="." index="11" instance=ExtResource("6_4np41")]
+[node name="GravityBubble" parent="." index="0" instance=ExtResource("6_4np41")]
 position = Vector2(1156, -27)
 gravity = 11.0
 radius = 384.0
 gravityStrength = 11.0
 
-[node name="GravityBubble2" parent="." index="12" instance=ExtResource("6_4np41")]
+[node name="GravityBubble2" parent="." index="1" instance=ExtResource("6_4np41")]
 position = Vector2(230, 371)
 gravity = -1033.0
 radius = 150.0
 gravityStrength = -1033.0
 
-[node name="BlackHole" parent="." index="13" instance=ExtResource("7_yw62b")]
+[node name="BlackHole" parent="." index="2" instance=ExtResource("7_yw62b")]
 position = Vector2(687, 547)
 radius = 49.0
+
+[node name="WormHole" parent="." index="3" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
+position = Vector2(653, 189)
+warpTarget = NodePath(".")
+radius = 27.0
+
+[node name="WormHole2" parent="." index="4" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
+position = Vector2(443, 134)
+warpTarget = NodePath("../WormHole")
+radius = 27.0
+
+[node name="Collectibles#Collectible" parent="." index="5" instance=ExtResource("2_v0433")]
+position = Vector2(790, 399)
+
+[node name="Collectibles#Collectible2" parent="." index="6" instance=ExtResource("2_v0433")]
+position = Vector2(851, 429)
+
+[node name="Collectibles#Collectible3" parent="." index="7" instance=ExtResource("2_v0433")]
+position = Vector2(917, 456)
+
+[node name="FuelTank" parent="." index="8" instance=ExtResource("4_46w3p")]
+position = Vector2(824, 295)
+
+[node name="Ball" parent="." index="12"]
+position = Vector2(421, 443)
+isFirstBall = true
+
+[node name="Ball3" parent="." index="13" instance=ExtResource("5_7rjs6")]
+position = Vector2(354, 6)
+isFirstBall = true
+
+[node name="Ball4" parent="." index="14" instance=ExtResource("5_7rjs6")]
+position = Vector2(251, 200)
+isFirstBall = true
+
+[node name="DeathScreen" parent="UI" index="6"]
+material = SubResource("ShaderMaterial_a1v4m")

@@ -11,9 +11,8 @@ var isTargeted := false:
 var pointer: Node2D = null
 var powerMeter: Node2D = null
 
-#todo: uncomment when re-adding warp	
-#var lastWarpSource: WHEntity = null
-#var warpTarget: WHEntity = null
+var lastWarpSource: Area2D = null
+var warpTarget: Area2D = null
 var awaitingWarp: bool = false
 
 @onready var inventory = $FollowTarget
@@ -57,22 +56,21 @@ func destroy(grantPoints: bool = false):
 	
 	self.queue_free()
 
-#todo: uncomment when re-adding warp	
-#func warp(source: WHEntity, target: WHEntity) -> bool:
-	#if(lastWarpSource == target):
+func warp(source: Area2D, target: Area2D) -> bool:
+	if(lastWarpSource == target):
 		## to stop infinite loop
-		#return false
-	#else:
-		#lastWarpSource = source
-		#warpTarget = target
-		#awaitingWarp = true
-		#return true
+		return false
+	else:
+		lastWarpSource = source
+		warpTarget = target
+		awaitingWarp = true
+		return true
 #
-#func _integrate_forces(_state):
-	#if awaitingWarp && warpTarget != null:
-		#self.global_position = warpTarget.global_position
-		#awaitingWarp = false
-		#warpTarget = null
+func _integrate_forces(_state):
+	if awaitingWarp && warpTarget != null:
+		self.global_position = warpTarget.global_position
+		awaitingWarp = false
+		warpTarget = null
 
 func set_target(value: bool=true):
 	isTargeted = value
