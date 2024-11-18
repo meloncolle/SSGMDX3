@@ -34,9 +34,12 @@ func _physics_process(delta):
 		if isBoosting:
 			if gravityStrength < Globals.GRAVITY_BOOST_LIMIT:
 				gravityStrength += Globals.GRAVITY_BOOST_SPEED * delta * 100
+				gravityStrength = clamp(gravityStrength, baseGravity, Globals.GRAVITY_BOOST_LIMIT)
 		else:
 			if gravityStrength > baseGravity:
 				gravityStrength -= Globals.GRAVITY_BOOST_SPEED * delta * 100
+				gravityStrength = clamp(gravityStrength, baseGravity, Globals.GRAVITY_BOOST_LIMIT)
+
 
 func _input(event):
 	if not Engine.is_editor_hint():
