@@ -15,8 +15,6 @@ func _on_entered(body: Node2D) -> void:
 	if body.is_in_group("balls"):
 		# Grant any points in inventory
 		body.destroy(true)
-	else:
-		return
 
 
 #-----------------------------------------------

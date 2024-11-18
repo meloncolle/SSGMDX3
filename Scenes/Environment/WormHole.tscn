@@ -14,6 +14,7 @@ radius = 100.0
 texture = ExtResource("2_sfbgi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_pbgqa")
 
 [connection signal="body_entered" from="." to="." method="_on_entered"]
