@@ -25,6 +25,9 @@ var isStopped := true:
 var index: int = -1: # Position in main ball array... Needs to be externally updated...
 	set = set_index
 
+# todo: determine if stopped or moving at beginning....
+# todo: when braking, have weight keep increasing infinitely i guess? and then go bakc to 0 in set window of time
+
 func _physics_process(delta: float) -> void:
 	if !isStopped:
 		# todo: make this smarter to deal with "orbiting" the drain

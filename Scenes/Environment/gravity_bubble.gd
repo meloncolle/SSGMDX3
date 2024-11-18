@@ -6,8 +6,8 @@ extends Area2D
 @export var allowNegativeGravity := true
 
 ## Radius of gravity field
-@export_range(0.01, 4096, 0.1, "suffix: px") var bubbleRadius = 150:
-	set = set_bubble_radius
+@export_range(0.01, 4096, 0.1, "suffix: px") var radius = 150:
+	set = set_radius
 			
 ## Strength of gravity field
 @export_range(Globals.MIN_GRAVITY, Globals.MAX_GRAVITY, 0.1, "suffix: px/s²") var gravityStrength = 980:
@@ -23,7 +23,7 @@ var baseGravity := 0.0
 var isBoosting := false
 
 func _ready():
-	set_bubble_radius(bubbleRadius)
+	set_radius(radius)
 	set_grav_strength(gravityStrength)
 	update_color()
 	
@@ -69,10 +69,10 @@ func update_color() -> void:
 
 # ----------SETTERS/GETTERS----------
 
-func set_bubble_radius(value: float) -> void:
-	bubbleRadius = value
+func set_radius(value: float) -> void:
+	radius = value
 	if collider != null:
-		collider.shape.radius = bubbleRadius
+		collider.shape.radius = radius
 	if sprite != null:
 		sprite.size = Vector2.ONE * value * 2.0
 		sprite.position = Vector2.ONE * value * -1.0

@@ -200,7 +200,7 @@ func _on_ball_destroyed(destroyedIndex: int, _pos: Vector2, points: int = 0):
 	
 	balls.remove_at(destroyedIndex)
 	if destroyedIndex <= activeBallIndex:
-		activeBallIndex -= 1
+		activeBallIndex = max(activeBallIndex - 1, 0)
 	update_ball_indices()	
 	
 	if balls.size() == 0:

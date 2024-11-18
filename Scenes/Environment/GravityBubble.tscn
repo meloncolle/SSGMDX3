@@ -12,14 +12,14 @@ shader_parameter/color = Color(0.498039, 1, 0.831373, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ngwu1"]
 resource_local_to_scene = true
-radius = 116.0
+radius = 100.0
 
 [node name="GravityBubble" type="Area2D"]
 gravity_space_override = 1
 gravity_point = true
 gravity = 377.0
 script = ExtResource("1_kpgnp")
-bubbleRadius = 100.0
+radius = 100.0
 gravityStrength = 377.0
 
 [node name="Sprite" type="ColorRect" parent="."]
