@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://kixx03afc854"]
+[gd_scene load_steps=12 format=3 uid="uid://kixx03afc854"]
 
 [ext_resource type="PackedScene" uid="uid://jwa57sqwi2ws" path="res://Scenes/Levels/base_level.tscn" id="1_ygtu8"]
+[ext_resource type="PackedScene" uid="uid://dhxf782jhffi8" path="res://Scenes/Environment/boundary.tscn" id="2_h1ner"]
 [ext_resource type="Shader" path="res://Assets/Shaders/blur.gdshader" id="2_iq53a"]
 [ext_resource type="PackedScene" uid="uid://ceht6yka27cw1" path="res://Scenes/Collectible/Collectible.tscn" id="2_v0433"]
 [ext_resource type="PackedScene" uid="uid://4f1m2s6ovnyx" path="res://Scenes/Collectible/FuelTank.tscn" id="4_46w3p"]
@@ -19,59 +20,68 @@ shader_parameter/brightness = 1.0
 [node name="BaseLevel" instance=ExtResource("1_ygtu8")]
 infinite_fuel = true
 
-[node name="Star" parent="." index="0" instance=ExtResource("9_o36ol")]
+[node name="Line2D" parent="." index="0" instance=ExtResource("2_h1ner")]
+points = PackedVector2Array(767, 88, 414, 38, -133, 35, -246, 214)
+closed = false
+
+[node name="Boundary" parent="." index="1" instance=ExtResource("2_h1ner")]
+position = Vector2(-319, 591)
+points = PackedVector2Array(227, -188, 370, 84, -133, 35, -237, -98, -82, -246)
+bounce = 100.0
+
+[node name="Star" parent="." index="2" instance=ExtResource("9_o36ol")]
 position = Vector2(1026, 486)
 rotation = 3.14159
 scale = Vector2(1, -1)
 radius = 30.0
 
-[node name="GravityBubble" parent="." index="1" instance=ExtResource("6_4np41")]
+[node name="GravityBubble" parent="." index="3" instance=ExtResource("6_4np41")]
 position = Vector2(1156, -27)
 gravity = 11.0
 radius = 384.0
 gravityStrength = 11.0
 
-[node name="GravityBubble2" parent="." index="2" instance=ExtResource("6_4np41")]
+[node name="GravityBubble2" parent="." index="4" instance=ExtResource("6_4np41")]
 position = Vector2(230, 371)
 gravity = -1033.0
 radius = 150.0
 gravityStrength = -1033.0
 
-[node name="BlackHole" parent="." index="3" instance=ExtResource("7_yw62b")]
+[node name="BlackHole" parent="." index="5" instance=ExtResource("7_yw62b")]
 position = Vector2(687, 547)
 radius = 49.0
 
-[node name="WormHole" parent="." index="4" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
+[node name="WormHole" parent="." index="6" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
 position = Vector2(653, 189)
-warpTarget = NodePath(".")
+warpTarget = NodePath("../WormHole2")
 radius = 27.0
 
-[node name="WormHole2" parent="." index="5" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
+[node name="WormHole2" parent="." index="7" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
 position = Vector2(443, 134)
 warpTarget = NodePath("../WormHole")
 radius = 27.0
 
-[node name="Collectibles#Collectible" parent="." index="6" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible" parent="." index="8" instance=ExtResource("2_v0433")]
 position = Vector2(790, 399)
 
-[node name="Collectibles#Collectible2" parent="." index="7" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible2" parent="." index="9" instance=ExtResource("2_v0433")]
 position = Vector2(851, 429)
 
-[node name="Collectibles#Collectible3" parent="." index="8" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible3" parent="." index="10" instance=ExtResource("2_v0433")]
 position = Vector2(917, 456)
 
-[node name="FuelTank" parent="." index="9" instance=ExtResource("4_46w3p")]
+[node name="FuelTank" parent="." index="11" instance=ExtResource("4_46w3p")]
 position = Vector2(824, 295)
 
-[node name="Ball" parent="." index="13"]
+[node name="Ball" parent="." index="15"]
 position = Vector2(421, 443)
 isFirstBall = true
 
-[node name="Ball3" parent="." index="14" instance=ExtResource("5_7rjs6")]
+[node name="Ball3" parent="." index="16" instance=ExtResource("5_7rjs6")]
 position = Vector2(354, 6)
 isFirstBall = true
 
-[node name="Ball4" parent="." index="15" instance=ExtResource("5_7rjs6")]
+[node name="Ball4" parent="." index="17" instance=ExtResource("5_7rjs6")]
 position = Vector2(251, 200)
 isFirstBall = true
 
