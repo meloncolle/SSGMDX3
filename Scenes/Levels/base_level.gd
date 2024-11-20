@@ -114,9 +114,9 @@ func do_swing(force: float):
 	if balls.size() == 0:
 		return
 	
-	var swing = get_global_mouse_position() - balls[activeBallIndex].position
-	# i think we have to multiply this by the camera zoom so the force is proportional?? weird
-	balls[activeBallIndex].apply_central_impulse(swing * power.force * power.power * cam.zoom.y)
+	var swing = (get_global_mouse_position() - balls[activeBallIndex].position).normalized()
+	print(swing * power.force * power.power)
+	balls[activeBallIndex].apply_central_impulse(swing * power.force * power.power * 500)
 	balls[activeBallIndex].isStopped = false
 	
 	if !infinite_fuel:
@@ -154,6 +154,7 @@ func set_state(newState: Enums.LevelState):
 			Globals.isPausable = true
 			Globals.disableBoost = true
 			balls[activeBallIndex].set_pointer(true)
+			cam.allow_offset = true
 			debugLabel.text = "[right]WAITING FOR SWING[/right]"
 			
 		Enums.LevelState.SWINGING:
@@ -168,6 +169,7 @@ func set_state(newState: Enums.LevelState):
 			power.isOscillating = false
 			Globals.disableBoost = false
 			balls[activeBallIndex].set_pointer(false)
+			cam.allow_offset = false
 			debugLabel.text = "[right]WAITING FOR BALL STOP[/right]"
 
 		

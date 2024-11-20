@@ -21,12 +21,13 @@ shader_parameter/brightness = 1.0
 infinite_fuel = true
 
 [node name="Line2D" parent="." index="0" instance=ExtResource("2_h1ner")]
-points = PackedVector2Array(767, 88, 414, 38, -133, 35, -246, 214)
+position = Vector2(-316, 1565)
+points = PackedVector2Array(4386, 502, 4561, -90, -241, -161, -246, 214)
 closed = false
 
 [node name="Boundary" parent="." index="1" instance=ExtResource("2_h1ner")]
-position = Vector2(-319, 591)
-points = PackedVector2Array(227, -188, 370, 84, -133, 35, -237, -98, -82, -246)
+position = Vector2(-897, -120)
+points = PackedVector2Array(548, -4146, 619, 1619, -136, 1607, -176, -4083)
 bounce = 100.0
 
 [node name="Star" parent="." index="2" instance=ExtResource("9_o36ol")]
@@ -36,54 +37,99 @@ scale = Vector2(1, -1)
 radius = 30.0
 
 [node name="GravityBubble" parent="." index="3" instance=ExtResource("6_4np41")]
-position = Vector2(1156, -27)
+position = Vector2(1062, -2745)
 gravity = 11.0
 radius = 384.0
 gravityStrength = 11.0
 
-[node name="GravityBubble2" parent="." index="4" instance=ExtResource("6_4np41")]
+[node name="GravityBubble7" parent="." index="4" instance=ExtResource("6_4np41")]
+position = Vector2(1264, -121)
+gravity = 11.0
+radius = 384.0
+gravityStrength = 11.0
+
+[node name="GravityBubble8" parent="." index="5" instance=ExtResource("6_4np41")]
+position = Vector2(1264, -121)
+gravity = 11.0
+radius = 384.0
+gravityStrength = 11.0
+
+[node name="GravityBubble5" parent="." index="6" instance=ExtResource("6_4np41")]
+position = Vector2(3120, 67)
+gravity = 11.0
+radius = 384.0
+gravityStrength = 11.0
+
+[node name="GravityBubble6" parent="." index="7" instance=ExtResource("6_4np41")]
+position = Vector2(3120, 67)
+gravity = 11.0
+radius = 384.0
+gravityStrength = 11.0
+
+[node name="GravityBubble3" parent="." index="8" instance=ExtResource("6_4np41")]
+position = Vector2(1963, -1574)
+gravity = 11.0
+radius = 384.0
+gravityStrength = 11.0
+
+[node name="GravityBubble4" parent="." index="9" instance=ExtResource("6_4np41")]
+position = Vector2(3497, -2745)
+gravity = 11.0
+radius = 384.0
+gravityStrength = 11.0
+
+[node name="GravityBubble2" parent="." index="10" instance=ExtResource("6_4np41")]
 position = Vector2(230, 371)
 gravity = -1033.0
 radius = 150.0
 gravityStrength = -1033.0
 
-[node name="BlackHole" parent="." index="5" instance=ExtResource("7_yw62b")]
+[node name="BlackHole" parent="." index="11" instance=ExtResource("7_yw62b")]
 position = Vector2(687, 547)
 radius = 49.0
 
-[node name="WormHole" parent="." index="6" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
+[node name="WormHole" parent="." index="12" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
 position = Vector2(653, 189)
 warpTarget = NodePath("../WormHole2")
 radius = 27.0
 
-[node name="WormHole2" parent="." index="7" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
+[node name="WormHole2" parent="." index="13" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
 position = Vector2(443, 134)
 warpTarget = NodePath("../WormHole")
 radius = 27.0
 
-[node name="Collectibles#Collectible" parent="." index="8" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible" parent="." index="14" instance=ExtResource("2_v0433")]
 position = Vector2(790, 399)
 
-[node name="Collectibles#Collectible2" parent="." index="9" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible2" parent="." index="15" instance=ExtResource("2_v0433")]
 position = Vector2(851, 429)
 
-[node name="Collectibles#Collectible3" parent="." index="10" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible3" parent="." index="16" instance=ExtResource("2_v0433")]
 position = Vector2(917, 456)
 
-[node name="FuelTank" parent="." index="11" instance=ExtResource("4_46w3p")]
+[node name="FuelTank" parent="." index="17" instance=ExtResource("4_46w3p")]
 position = Vector2(824, 295)
 
-[node name="Ball" parent="." index="15"]
+[node name="Camera2D" parent="." index="20"]
+position_smoothing_speed = 50.0
+max_offset = 150
+
+[node name="Ball" parent="." index="21"]
 position = Vector2(421, 443)
 isFirstBall = true
 
-[node name="Ball3" parent="." index="16" instance=ExtResource("5_7rjs6")]
+[node name="Ball3" parent="." index="22" instance=ExtResource("5_7rjs6")]
 position = Vector2(354, 6)
 isFirstBall = true
 
-[node name="Ball4" parent="." index="17" instance=ExtResource("5_7rjs6")]
+[node name="Ball4" parent="." index="23" instance=ExtResource("5_7rjs6")]
 position = Vector2(251, 200)
 isFirstBall = true
 
 [node name="DeathScreen" parent="UI" index="6"]
 material = SubResource("ShaderMaterial_a1v4m")
+
+[node name="Line2D2" parent="." index="25" instance=ExtResource("2_h1ner")]
+position = Vector2(2767, -1252)
+points = PackedVector2Array(1155, 3494, 1786, 3170, 2056, -2977, -3245, -2910, -3256, -2621, 1608, -2494)
+closed = false

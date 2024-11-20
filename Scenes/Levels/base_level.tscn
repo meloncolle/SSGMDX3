@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b0q8p531yqss6" path="res://Scenes/Player/Ball.tscn" id="5_vcv83"]
 [ext_resource type="FontFile" uid="uid://blgpfplhkpohw" path="res://Assets/UI/CAT North.ttf" id="7_oh2q1"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_glqwp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ur1i2"]
 resource_local_to_scene = true
 shader = ExtResource("3_2ydd2")
 shader_parameter/blur = 0.0
@@ -22,7 +22,7 @@ script = ExtResource("1_uc3i8")
 
 [node name="Power" type="Node" parent="."]
 script = ExtResource("2_bhbfv")
-force = 20.0
+force = 10.0
 meterSpeed = 5.0
 
 [node name="Fuel" type="Node" parent="."]
@@ -150,7 +150,7 @@ metadata/_edit_lock_ = true
 
 [node name="DeathScreen" parent="UI" instance=ExtResource("2_l5cqc")]
 visible = false
-material = SubResource("ShaderMaterial_glqwp")
+material = SubResource("ShaderMaterial_ur1i2")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

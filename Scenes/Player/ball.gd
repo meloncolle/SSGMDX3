@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 				linear_damp = clampf(linear_damp - 20.0 * delta, 0, 20.0)
 
 		if !Globals.disableInput && pointer != null:
-			look_at(get_global_mouse_position())
+			pointer.look_at(get_global_mouse_position())
 
 func destroy(grantPoints: bool = false):
 	SignalBus.ball_destroyed.emit(index, global_position)
