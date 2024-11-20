@@ -17,8 +17,9 @@ shader = ExtResource("2_iq53a")
 shader_parameter/blur = 0.0
 shader_parameter/brightness = 1.0
 
-[node name="BaseLevel" instance=ExtResource("1_ygtu8")]
+[node name="Level" instance=ExtResource("1_ygtu8")]
 infinite_fuel = true
+items_follow_player = false
 
 [node name="Line2D" parent="." index="0" instance=ExtResource("2_h1ner")]
 position = Vector2(-316, 1565)
@@ -99,37 +100,58 @@ warpTarget = NodePath("../WormHole")
 radius = 27.0
 
 [node name="Collectibles#Collectible" parent="." index="14" instance=ExtResource("2_v0433")]
-position = Vector2(790, 399)
+position = Vector2(701, 374)
 
-[node name="Collectibles#Collectible2" parent="." index="15" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible4" parent="." index="15" instance=ExtResource("2_v0433")]
+position = Vector2(740, 430)
+
+[node name="Collectibles#Collectible5" parent="." index="16" instance=ExtResource("2_v0433")]
+position = Vector2(804, 383)
+
+[node name="Collectibles#Collectible6" parent="." index="17" instance=ExtResource("2_v0433")]
+position = Vector2(755, 348)
+
+[node name="Collectibles#Collectible7" parent="." index="18" instance=ExtResource("2_v0433")]
+position = Vector2(658, 442)
+
+[node name="Collectibles#Collectible8" parent="." index="19" instance=ExtResource("2_v0433")]
+position = Vector2(630, 378)
+
+[node name="Collectibles#Collectible9" parent="." index="20" instance=ExtResource("2_v0433")]
+position = Vector2(590, 449)
+
+[node name="Collectibles#Collectible10" parent="." index="21" instance=ExtResource("2_v0433")]
+position = Vector2(566, 386)
+
+[node name="Collectibles#Collectible2" parent="." index="22" instance=ExtResource("2_v0433")]
 position = Vector2(851, 429)
 
-[node name="Collectibles#Collectible3" parent="." index="16" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible3" parent="." index="23" instance=ExtResource("2_v0433")]
 position = Vector2(917, 456)
 
-[node name="FuelTank" parent="." index="17" instance=ExtResource("4_46w3p")]
+[node name="FuelTank" parent="." index="24" instance=ExtResource("4_46w3p")]
 position = Vector2(824, 295)
 
-[node name="Camera2D" parent="." index="20"]
+[node name="Camera2D" parent="." index="27"]
 position_smoothing_speed = 50.0
 max_offset = 150
 
-[node name="Ball" parent="." index="21"]
+[node name="Ball" parent="." index="28"]
 position = Vector2(421, 443)
 isFirstBall = true
 
-[node name="Ball3" parent="." index="22" instance=ExtResource("5_7rjs6")]
+[node name="Ball3" parent="." index="29" instance=ExtResource("5_7rjs6")]
 position = Vector2(354, 6)
 isFirstBall = true
 
-[node name="Ball4" parent="." index="23" instance=ExtResource("5_7rjs6")]
+[node name="Ball4" parent="." index="30" instance=ExtResource("5_7rjs6")]
 position = Vector2(251, 200)
 isFirstBall = true
 
 [node name="DeathScreen" parent="UI" index="6"]
 material = SubResource("ShaderMaterial_a1v4m")
 
-[node name="Line2D2" parent="." index="25" instance=ExtResource("2_h1ner")]
+[node name="Line2D2" parent="." index="32" instance=ExtResource("2_h1ner")]
 position = Vector2(2767, -1252)
-points = PackedVector2Array(1155, 3494, 1786, 3170, 2056, -2977, -3245, -2910, -3256, -2621, 1608, -2494)
+points = PackedVector2Array(1155, 3494, 1786, 3170, 2056, -2977, -457.524, -2945.23, -3245, -2910, -3256, -2621, 1608, -2494)
 closed = false

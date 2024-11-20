@@ -5,7 +5,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h5r4d"]
 resource_local_to_scene = true
 
-[node name="Line2D" type="Line2D"]
+[node name="Boundary" type="Line2D"]
 position = Vector2(217, 676)
 points = PackedVector2Array(298, -103, 227, 82, -133, 35, -155, -57)
 closed = true

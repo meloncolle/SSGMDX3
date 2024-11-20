@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/item_list.gd" id="2_nqmvc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8v0fu"]
+resource_local_to_scene = true
 radius = 20.85
 
 [node name="Ball" type="RigidBody2D" groups=["balls"]]

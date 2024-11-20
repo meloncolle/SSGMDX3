@@ -5,9 +5,6 @@ extends Node
 const ENABLE_COLLISION_DEBUG_IN_EXPORT: bool = true
 # Can press space to select next ball
 const ENABLE_SWITCHING_BALLS: bool = true
-# true: Player scores points on contact w/ collectible
-# false: Collectibles 'carried' by ball, and points granted when reaching black hole
-const ENABLE_SIMPLE_COLLECTIBLES: bool = false
 
 # for setting star gravity in editor
 const MAX_GRAVITY: float = 4096

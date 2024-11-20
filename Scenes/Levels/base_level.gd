@@ -25,6 +25,8 @@ var strokes: int = 0: set = set_strokes
 @onready var strokeLabel: RichTextLabel = $UI/StrokesLabel
 
 @export var infinite_fuel: bool = false
+@export var grant_points_on_pickup: bool = false
+@export var items_follow_player: bool = false
 
 @onready var debugLabel: RichTextLabel = $UI/DebugLabel
 
@@ -56,9 +58,14 @@ func _ready():
 			break
 	set_active_ball(activeBallIndex)
 	
+	if !items_follow_player:
+		for i in range(balls.size()):
+			balls[i].inventory.visible = false
+			
 	# Hook up signals
 	SignalBus.connect("earned_points", self.set_score)
 	SignalBus.connect("pickup_fuel", func(val: float): fuel.fuel += val)
+	SignalBus.connect("pickup_points", self._on_pickup_points)
 	SignalBus.connect("changed_fuel", _on_changed_fuel)
 	SignalBus.connect("ball_destroyed", _on_ball_destroyed)
 	SignalBus.connect("ball_stopped", _on_ball_stopped)
@@ -182,7 +189,29 @@ func set_state(newState: Enums.LevelState):
 func set_score(newScore: int, baseScore: int = score):
 	score = newScore + baseScore
 	scoreLabel.text = "Points: %d" % score
+
+func _on_pickup_points(collectible: Collectible, ball: Node2D):
+	if !items_follow_player:
+		ball.collider.shape.radius += collectible.pointValue * 0.2
 	
+	# this is ugly...
+	
+	if grant_points_on_pickup:
+		SignalBus.earned_points.emit(collectible.pointValue)
+	else:
+		collectible.body_entered.disconnect(collectible._on_body_entered)
+		ball.inventory.add_item(collectible)
+	
+	if grant_points_on_pickup && items_follow_player:
+		collectible.body_entered.disconnect(collectible._on_body_entered)
+		ball.inventory.add_item(collectible, true)
+	
+	elif grant_points_on_pickup && !items_follow_player:
+		collectible.destroy(false)
+	
+	elif !grant_points_on_pickup && !items_follow_player:
+		collectible.visible = false
+
 func set_strokes(val: int):
 	strokes = val
 	strokeLabel.text = "Strokes: %d" % strokes

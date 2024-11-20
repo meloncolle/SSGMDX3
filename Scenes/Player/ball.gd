@@ -11,6 +11,8 @@ var isTargeted := false:
 var pointer: Node2D = null
 var powerMeter: Node2D = null
 
+@onready var collider: CollisionShape2D = $CollisionShape2D
+
 var lastWarpSource: Area2D = null
 var warpTarget: Area2D = null
 var awaitingWarp: bool = false
@@ -91,5 +93,6 @@ func set_pointer(value: bool=true):
 	if value:
 		pointer = load("res://Scenes/UI/Pointer.tscn").instantiate()
 		self.add_child(pointer)
+		pointer.get_child(0).offset.y -= collider.shape.radius
 	else:
 		pointer = null

@@ -9,14 +9,7 @@ func _ready():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("balls"):
-		SignalBus.pickup_points.emit()
-		if Globals.ENABLE_SIMPLE_COLLECTIBLES:
-			destroy(true)
-		else:
-			body_entered.disconnect(_on_body_entered)
-			body.inventory.add_item(self)
-	else:
-		return
+		SignalBus.pickup_points.emit(self, body)
 		
 func destroy(grantPoints: bool = false) -> void:
 	if grantPoints:
