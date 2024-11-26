@@ -132,13 +132,9 @@ position = Vector2(917, 456)
 [node name="FuelTank" parent="." index="24" instance=ExtResource("4_46w3p")]
 position = Vector2(824, 295)
 
-[node name="Camera2D" parent="." index="27"]
+[node name="Camera2D" parent="." index="28"]
 position_smoothing_speed = 50.0
 max_offset = 150
-
-[node name="Ball" parent="." index="28"]
-position = Vector2(421, 443)
-isFirstBall = true
 
 [node name="Ball3" parent="." index="29" instance=ExtResource("5_7rjs6")]
 position = Vector2(354, 6)
@@ -148,10 +144,24 @@ isFirstBall = true
 position = Vector2(251, 200)
 isFirstBall = true
 
-[node name="DeathScreen" parent="UI" index="6"]
-material = SubResource("ShaderMaterial_a1v4m")
+[node name="Ball" parent="." index="31"]
+position = Vector2(421, 443)
+isFirstBall = true
 
 [node name="Line2D2" parent="." index="32" instance=ExtResource("2_h1ner")]
 position = Vector2(2767, -1252)
 points = PackedVector2Array(1155, 3494, 1786, 3170, 2056, -2977, -457.524, -2945.23, -3245, -2910, -3256, -2621, 1608, -2494)
 closed = false
+
+[node name="DebugLabel" parent="UI" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 697.0
+offset_bottom = 39.0
+
+[node name="DeathScreen" parent="UI" index="6"]
+material = SubResource("ShaderMaterial_a1v4m")
+
+[node name="Boundary2" parent="." index="34" instance=ExtResource("2_h1ner")]
+position = Vector2(727, -841)
+points = PackedVector2Array(298, -103, 102, 30, 236, 191, -133, 35, -155, -57)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://jwa57sqwi2ws"]
+[gd_scene load_steps=12 format=3 uid="uid://jwa57sqwi2ws"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/base_level.gd" id="1_uc3i8"]
 [ext_resource type="Script" path="res://Scripts/cam.gd" id="2_1qgfg"]
@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bx3uslokvfceg" path="res://Scenes/UI/HUD/PowerMeter.tscn" id="5_j3a3o"]
 [ext_resource type="PackedScene" uid="uid://b0q8p531yqss6" path="res://Scenes/Player/Ball.tscn" id="5_vcv83"]
 [ext_resource type="FontFile" uid="uid://blgpfplhkpohw" path="res://Assets/UI/CAT North.ttf" id="7_oh2q1"]
+[ext_resource type="Texture2D" uid="uid://djkk0aonfqfnk" path="res://icon.svg" id="10_p0o3c"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jw6kh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ctqow"]
 resource_local_to_scene = true
 shader = ExtResource("3_2ydd2")
 shader_parameter/blur = 0.0
@@ -20,6 +21,19 @@ shader_parameter/brightness = 1.0
 process_mode = 1
 script = ExtResource("1_uc3i8")
 items_follow_player = true
+
+[node name="Background" type="Parallax2D" parent="."]
+repeat_size = Vector2(100, 100)
+repeat_times = 64
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.0352941)
+offset_left = 54.0
+offset_top = 80.0
+offset_right = 182.0
+offset_bottom = 208.0
+texture = ExtResource("10_p0o3c")
+stretch_mode = 1
 
 [node name="Power" type="Node" parent="."]
 script = ExtResource("2_bhbfv")
@@ -41,12 +55,10 @@ position = Vector2(576, 324)
 
 [node name="DebugLabel" type="RichTextLabel" parent="UI"]
 clip_contents = false
-anchors_preset = -1
-anchor_bottom = 0.103395
-offset_left = 439.0
-offset_top = 15.0
-offset_right = 1136.0
-offset_bottom = 54.0
+offset_left = 442.0
+offset_top = 14.0
+offset_right = 1139.0
+offset_bottom = 53.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 8
@@ -151,7 +163,7 @@ metadata/_edit_lock_ = true
 
 [node name="DeathScreen" parent="UI" instance=ExtResource("2_l5cqc")]
 visible = false
-material = SubResource("ShaderMaterial_jw6kh")
+material = SubResource("ShaderMaterial_ctqow")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

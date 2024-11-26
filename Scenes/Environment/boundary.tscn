@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhxf782jhffi8"]
 
-[ext_resource type="Script" path="res://_debug/Levels/boundary.gd" id="1_3ebm3"]
+[ext_resource type="Script" path="res://Scenes/Environment/boundary.gd" id="1_3ebm3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h5r4d"]
 resource_local_to_scene = true
 
 [node name="Boundary" type="Line2D"]
-position = Vector2(217, 676)
 points = PackedVector2Array(298, -103, 227, 82, -133, 35, -155, -57)
 closed = true
 joint_mode = 2
