@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://kixx03afc854"]
+[gd_scene load_steps=14 format=3 uid="uid://kixx03afc854"]
 
 [ext_resource type="PackedScene" uid="uid://jwa57sqwi2ws" path="res://Scenes/Levels/base_level.tscn" id="1_ygtu8"]
 [ext_resource type="PackedScene" uid="uid://dhxf782jhffi8" path="res://Scenes/Environment/boundary.tscn" id="2_h1ner"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ceht6yka27cw1" path="res://Scenes/Collectible/Collectible.tscn" id="2_v0433"]
 [ext_resource type="PackedScene" uid="uid://4f1m2s6ovnyx" path="res://Scenes/Collectible/FuelTank.tscn" id="4_46w3p"]
 [ext_resource type="PackedScene" uid="uid://b0q8p531yqss6" path="res://Scenes/Player/Ball.tscn" id="5_7rjs6"]
+[ext_resource type="PackedScene" uid="uid://boxbjnaaesabf" path="res://Scenes/Environment/planet.tscn" id="5_dfws3"]
 [ext_resource type="PackedScene" uid="uid://dhkau0du4lpmk" path="res://Scenes/Environment/GravityBubble.tscn" id="6_4np41"]
 [ext_resource type="PackedScene" uid="uid://bjfgkcmbtqup" path="res://Scenes/Environment/BlackHole.tscn" id="7_yw62b"]
 [ext_resource type="PackedScene" uid="uid://d1f85mp1v3bdg" path="res://Scenes/Environment/WormHole.tscn" id="8_uqaj3"]
@@ -50,106 +51,102 @@ gravity = 11.0
 radius = 384.0
 gravityStrength = 11.0
 
-[node name="GravityBubble8" parent="." index="5" instance=ExtResource("6_4np41")]
-position = Vector2(1264, -121)
-gravity = 11.0
-radius = 384.0
-gravityStrength = 11.0
+[node name="Planet" parent="GravityBubble7" index="2" instance=ExtResource("5_dfws3")]
 
-[node name="GravityBubble5" parent="." index="6" instance=ExtResource("6_4np41")]
+[node name="GravityBubble5" parent="." index="5" instance=ExtResource("6_4np41")]
 position = Vector2(3120, 67)
 gravity = 11.0
 radius = 384.0
 gravityStrength = 11.0
 
-[node name="GravityBubble6" parent="." index="7" instance=ExtResource("6_4np41")]
+[node name="GravityBubble6" parent="." index="6" instance=ExtResource("6_4np41")]
 position = Vector2(3120, 67)
 gravity = 11.0
 radius = 384.0
 gravityStrength = 11.0
 
-[node name="GravityBubble3" parent="." index="8" instance=ExtResource("6_4np41")]
+[node name="GravityBubble3" parent="." index="7" instance=ExtResource("6_4np41")]
 position = Vector2(1963, -1574)
 gravity = 11.0
 radius = 384.0
 gravityStrength = 11.0
 
-[node name="GravityBubble4" parent="." index="9" instance=ExtResource("6_4np41")]
+[node name="GravityBubble4" parent="." index="8" instance=ExtResource("6_4np41")]
 position = Vector2(3497, -2745)
 gravity = 11.0
 radius = 384.0
 gravityStrength = 11.0
 
-[node name="GravityBubble2" parent="." index="10" instance=ExtResource("6_4np41")]
+[node name="GravityBubble2" parent="." index="9" instance=ExtResource("6_4np41")]
 position = Vector2(230, 371)
 gravity = -1033.0
 radius = 150.0
 gravityStrength = -1033.0
 
-[node name="BlackHole" parent="." index="11" instance=ExtResource("7_yw62b")]
+[node name="BlackHole" parent="." index="10" instance=ExtResource("7_yw62b")]
 position = Vector2(687, 547)
 radius = 49.0
 
-[node name="WormHole" parent="." index="12" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
+[node name="WormHole" parent="." index="11" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
 position = Vector2(653, 189)
 warpTarget = NodePath("../WormHole2")
 radius = 27.0
 
-[node name="WormHole2" parent="." index="13" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
+[node name="WormHole2" parent="." index="12" node_paths=PackedStringArray("warpTarget") instance=ExtResource("8_uqaj3")]
 position = Vector2(443, 134)
 warpTarget = NodePath("../WormHole")
 radius = 27.0
 
-[node name="Collectibles#Collectible" parent="." index="14" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible" parent="." index="13" instance=ExtResource("2_v0433")]
 position = Vector2(701, 374)
 
-[node name="Collectibles#Collectible4" parent="." index="15" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible4" parent="." index="14" instance=ExtResource("2_v0433")]
 position = Vector2(740, 430)
 
-[node name="Collectibles#Collectible5" parent="." index="16" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible5" parent="." index="15" instance=ExtResource("2_v0433")]
 position = Vector2(804, 383)
 
-[node name="Collectibles#Collectible6" parent="." index="17" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible6" parent="." index="16" instance=ExtResource("2_v0433")]
 position = Vector2(755, 348)
 
-[node name="Collectibles#Collectible7" parent="." index="18" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible7" parent="." index="17" instance=ExtResource("2_v0433")]
 position = Vector2(658, 442)
 
-[node name="Collectibles#Collectible8" parent="." index="19" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible8" parent="." index="18" instance=ExtResource("2_v0433")]
 position = Vector2(630, 378)
 
-[node name="Collectibles#Collectible9" parent="." index="20" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible9" parent="." index="19" instance=ExtResource("2_v0433")]
 position = Vector2(590, 449)
 
-[node name="Collectibles#Collectible10" parent="." index="21" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible10" parent="." index="20" instance=ExtResource("2_v0433")]
 position = Vector2(566, 386)
 
-[node name="Collectibles#Collectible2" parent="." index="22" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible2" parent="." index="21" instance=ExtResource("2_v0433")]
 position = Vector2(851, 429)
 
-[node name="Collectibles#Collectible3" parent="." index="23" instance=ExtResource("2_v0433")]
+[node name="Collectibles#Collectible3" parent="." index="22" instance=ExtResource("2_v0433")]
 position = Vector2(917, 456)
 
-[node name="FuelTank" parent="." index="24" instance=ExtResource("4_46w3p")]
+[node name="FuelTank" parent="." index="23" instance=ExtResource("4_46w3p")]
 position = Vector2(824, 295)
 
-[node name="Camera2D" parent="." index="28"]
+[node name="Camera2D" parent="." index="27"]
 position_smoothing_speed = 50.0
 max_offset = 150
 
-[node name="Ball3" parent="." index="29" instance=ExtResource("5_7rjs6")]
+[node name="Ball3" parent="." index="28" instance=ExtResource("5_7rjs6")]
 position = Vector2(354, 6)
 isFirstBall = true
 
-[node name="Ball4" parent="." index="30" instance=ExtResource("5_7rjs6")]
+[node name="Ball4" parent="." index="29" instance=ExtResource("5_7rjs6")]
 position = Vector2(251, 200)
 isFirstBall = true
 
-[node name="Ball" parent="." index="31"]
+[node name="Ball" parent="." index="30"]
 position = Vector2(421, 443)
 isFirstBall = true
 
-[node name="Line2D2" parent="." index="32" instance=ExtResource("2_h1ner")]
+[node name="Line2D2" parent="." index="31" instance=ExtResource("2_h1ner")]
 position = Vector2(2767, -1252)
 points = PackedVector2Array(1155, 3494, 1786, 3170, 2056, -2977, -457.524, -2945.23, -3245, -2910, -3256, -2621, 1608, -2494)
 closed = false
@@ -163,13 +160,13 @@ offset_bottom = 39.0
 [node name="DeathScreen" parent="UI" index="6"]
 material = SubResource("ShaderMaterial_a1v4m")
 
-[node name="Boundary2" parent="." index="34" instance=ExtResource("2_h1ner")]
+[node name="Boundary2" parent="." index="33" instance=ExtResource("2_h1ner")]
 position = Vector2(727, -841)
 points = PackedVector2Array(298, -103, 102, 30, 236, 191, -133, 35, -155, -57)
 
-[node name="Boundary3" parent="." index="35" instance=ExtResource("11_8c16d")]
+[node name="Boundary3" parent="." index="34" instance=ExtResource("11_8c16d")]
 position = Vector2(1914, -835)
 
-[node name="Boundary4" parent="." index="36" instance=ExtResource("11_8c16d")]
+[node name="Boundary4" parent="." index="35" instance=ExtResource("11_8c16d")]
 position = Vector2(2174, -260)
 points = PackedVector2Array(298, -103, 158, 314, -279, 452, -299, 105)
