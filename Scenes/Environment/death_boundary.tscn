@@ -1,24 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhxf782jhffi8"]
+[gd_scene load_steps=2 format=3 uid="uid://c0v5d8eyjtx20"]
 
-[ext_resource type="Script" path="res://Scenes/Environment/boundary.gd" id="1_3ebm3"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h5r4d"]
-resource_local_to_scene = true
+[ext_resource type="Script" path="res://Scenes/Environment/boundary.gd" id="1_ktvy6"]
 
 [node name="Boundary" type="Line2D"]
 points = PackedVector2Array(298, -103, 227, 82, -133, 35, -155, -57)
 closed = true
+default_color = Color(1, 0, 0, 1)
 joint_mode = 2
 antialiased = true
-script = ExtResource("1_3ebm3")
+script = ExtResource("1_ktvy6")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(1, 1, 1, 0.462745)
+color = Color(1, 0, 0, 0.462745)
 polygon = PackedVector2Array(298, -103, 227, 82, -133, 35, -155, -57)
 
-[node name="Body2D" type="StaticBody2D" parent="."]
-physics_material_override = SubResource("PhysicsMaterial_h5r4d")
+[node name="Body2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body2D"]
 visible = false
 polygon = PackedVector2Array(298, -103, 227, 82, -133, 35, -155, -57)
+
+[connection signal="body_entered" from="Body2D" to="." method="_on_entered"]

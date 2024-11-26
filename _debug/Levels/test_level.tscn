@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://kixx03afc854"]
+[gd_scene load_steps=13 format=3 uid="uid://kixx03afc854"]
 
 [ext_resource type="PackedScene" uid="uid://jwa57sqwi2ws" path="res://Scenes/Levels/base_level.tscn" id="1_ygtu8"]
 [ext_resource type="PackedScene" uid="uid://dhxf782jhffi8" path="res://Scenes/Environment/boundary.tscn" id="2_h1ner"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bjfgkcmbtqup" path="res://Scenes/Environment/BlackHole.tscn" id="7_yw62b"]
 [ext_resource type="PackedScene" uid="uid://d1f85mp1v3bdg" path="res://Scenes/Environment/WormHole.tscn" id="8_uqaj3"]
 [ext_resource type="PackedScene" uid="uid://c2d0k5y1cld8s" path="res://Scenes/Environment/Star.tscn" id="9_o36ol"]
+[ext_resource type="PackedScene" uid="uid://c0v5d8eyjtx20" path="res://Scenes/Environment/death_boundary.tscn" id="11_8c16d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a1v4m"]
 resource_local_to_scene = true
@@ -165,3 +166,10 @@ material = SubResource("ShaderMaterial_a1v4m")
 [node name="Boundary2" parent="." index="34" instance=ExtResource("2_h1ner")]
 position = Vector2(727, -841)
 points = PackedVector2Array(298, -103, 102, 30, 236, 191, -133, 35, -155, -57)
+
+[node name="Boundary3" parent="." index="35" instance=ExtResource("11_8c16d")]
+position = Vector2(1914, -835)
+
+[node name="Boundary4" parent="." index="36" instance=ExtResource("11_8c16d")]
+position = Vector2(2174, -260)
+points = PackedVector2Array(298, -103, 158, 314, -279, 452, -299, 105)
