@@ -10,7 +10,7 @@ shader_parameter/strength = 0.092041
 shader_parameter/radius = 100.0
 shader_parameter/color = Color(0.498039, 1, 0.831373, 1)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ngwu1"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_rgboa"]
 resource_local_to_scene = true
 radius = 100.0
 
@@ -37,5 +37,5 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ngwu1")
+shape = SubResource("CircleShape2D_rgboa")
 debug_color = Color(0, 0.6, 0.701961, 0)

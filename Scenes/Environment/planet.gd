@@ -7,6 +7,7 @@ extends StaticBody2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
 
 func _ready():
+	collider.shape = collider.shape.duplicate()
 	set_radius(radius)
 
 func set_radius(value: float) -> void:

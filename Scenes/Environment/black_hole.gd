@@ -9,6 +9,7 @@ extends Area2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
 
 func _ready():
+	collider.shape = collider.shape.duplicate()
 	set_radius(radius)
 
 func _on_entered(body: Node2D) -> void:

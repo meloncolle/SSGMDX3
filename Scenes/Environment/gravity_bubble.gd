@@ -23,6 +23,8 @@ var baseGravity := 0.0
 var isBoosting := false
 
 func _ready():
+	collider.shape = collider.shape.duplicate()
+	sprite.material = sprite.material.duplicate()
 	set_radius(radius)
 	set_grav_strength(gravityStrength)
 	update_color()

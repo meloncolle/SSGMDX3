@@ -11,6 +11,7 @@ extends Area2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
 
 func _ready():
+	collider.shape = collider.shape.duplicate()
 	set_radius(radius)
 	if not Engine.is_editor_hint():
 		assert(warpTarget != null, "Wormhole \"" + name + "\" needs to have warp target assigned")
