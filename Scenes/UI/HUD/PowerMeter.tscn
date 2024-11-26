@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx3uslokvfceg"]
+
+[ext_resource type="Script" path="res://Scenes/UI/HUD/powerMeter.gd" id="1_ks6ve"]
+[ext_resource type="Texture2D" uid="uid://bohfmfyrt6tbe" path="res://Assets/UI/HUD/power_meter_frame.png" id="2_wetkk"]
+[ext_resource type="Texture2D" uid="uid://cfbcjkt13r2em" path="res://Assets/UI/HUD/power_meter_bar.png" id="3_8tc8w"]
+[ext_resource type="FontFile" uid="uid://blgpfplhkpohw" path="res://Assets/UI/CAT North.ttf" id="4_mooek"]
+
+[node name="Frame" type="Sprite2D"]
+texture = ExtResource("2_wetkk")
+
+[node name="Mask" type="Sprite2D" parent="."]
+clip_children = 1
+texture = ExtResource("3_8tc8w")
+
+[node name="Bar" type="Node2D" parent="Mask"]
+script = ExtResource("1_ks6ve")
+
+[node name="Power" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = -142.0
+offset_top = 208.0
+offset_right = 139.0
+offset_bottom = 286.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/normal_font = ExtResource("4_mooek")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "POWER"
+fit_content = true
+autowrap_mode = 0

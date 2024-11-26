@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2pnj083n28r6"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_n8ihv"]
+[ext_resource type="PackedScene" uid="uid://kixx03afc854" path="res://_debug/Levels/test_level.tscn" id="2_pybl5"]
+[ext_resource type="PackedScene" uid="uid://cccvsiorwsaq2" path="res://Scenes/UI/Menus/start_menu.tscn" id="2_s22xw"]
+[ext_resource type="PackedScene" uid="uid://bmlhgvnxyd87" path="res://Scenes/UI/Menus/pause_menu.tscn" id="3_3cpd8"]
+
+[node name="Main" type="Node"]
+process_mode = 3
+script = ExtResource("1_n8ihv")
+starting_level = ExtResource("2_pybl5")
+
+[node name="Menus" type="CanvasLayer" parent="."]
+
+[node name="Start" parent="Menus" instance=ExtResource("2_s22xw")]
+
+[node name="Pause" parent="Menus" instance=ExtResource("3_3cpd8")]

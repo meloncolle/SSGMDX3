@@ -9,11 +9,19 @@ var sceneInstance: Node = null
 @onready var pauseMenu: Control = $Menus/Pause
 
 func _ready():
+	if Globals.ENABLE_COLLISION_DEBUG_IN_EXPORT:
+		get_tree().set_debug_collisions_hint(true)
+	
 	set_state(Enums.GameState.ON_START)
-	startMenu.get_node("Panel/VBoxContainer/StartButton").pressed.connect(self._on_press_start)
-	startMenu.get_node("Panel/VBoxContainer/ExitButton").pressed.connect(self._on_press_exit)
-	pauseMenu.get_node("Panel/VBoxContainer/ResumeButton").pressed.connect(self._on_press_resume)
-	pauseMenu.get_node("Panel/VBoxContainer/QuitButton").pressed.connect(self._on_press_quit)
+	startMenu.startButton.pressed.connect(self._on_press_start)
+	startMenu.exitButton.pressed.connect(self._on_press_exit)
+	pauseMenu.resumeButton.pressed.connect(func(): SignalBus.lvl_resumed.emit())
+	pauseMenu.restartButton.pressed.connect(func(): SignalBus.lvl_restarted.emit())
+	pauseMenu.quitButton.pressed.connect(func(): SignalBus.lvl_exited.emit())
+	
+	SignalBus.lvl_exited.connect(_on_press_lvl_quit)
+	SignalBus.lvl_restarted.connect(_on_press_lvl_restart)
+	SignalBus.lvl_resumed.connect(_on_press_lvl_resume)
 
 func _input (event: InputEvent):
 	if(gameState != Enums.GameState.ON_START && event.is_action_pressed("ui_cancel")):
@@ -50,11 +58,21 @@ func _on_press_start():
 func _on_press_exit():
 	get_tree().quit()
 	
-func _on_press_resume():
+func _on_press_lvl_resume():
 	get_tree().paused = false
 	set_state(Enums.GameState.IN_GAME)
 	
-func _on_press_quit():
+func _on_press_lvl_restart():
+	get_tree().paused = false
+	set_state(Enums.GameState.IN_GAME)
+	if (is_instance_valid(sceneInstance)):
+		sceneInstance.queue_free()
+		await get_tree().process_frame
+	sceneInstance = load(starting_level.resource_path).instantiate()
+	self.add_child(sceneInstance)
+	set_state(Enums.GameState.IN_GAME)
+	
+func _on_press_lvl_quit():
 	if (is_instance_valid(sceneInstance)):
 		sceneInstance.queue_free()
 	sceneInstance = null

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhkau0du4lpmk"]
+
+[ext_resource type="Script" path="res://Scenes/Environment/gravity_bubble.gd" id="1_kpgnp"]
+[ext_resource type="Shader" path="res://Assets/Shaders/gravity_bubble.gdshader" id="2_4gs2m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_px8mn"]
+resource_local_to_scene = true
+shader = ExtResource("2_4gs2m")
+shader_parameter/strength = 0.092041
+shader_parameter/radius = 100.0
+shader_parameter/color = Color(0.498039, 1, 0.831373, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rgboa"]
+resource_local_to_scene = true
+radius = 100.0
+
+[node name="GravityBubble" type="Area2D"]
+gravity_space_override = 1
+gravity_point = true
+gravity = 377.0
+script = ExtResource("1_kpgnp")
+radius = 100.0
+gravityStrength = 377.0
+
+[node name="Sprite" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_px8mn")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rgboa")
+debug_color = Color(0, 0.6, 0.701961, 0)
